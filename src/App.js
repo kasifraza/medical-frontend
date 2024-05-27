@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import AdminLayout from './Layout/AdminLayout';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import Register from './pages/Register';
+import Collections from './pages/admin/Collections';
+import IdleTimerContainer from './components/IdleTimerContainer';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <IdleTimerContainer>
+      <Routes>
+        <Route path="/" element={<AdminLayout />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/admin/collections" element={<Collections />} />
+        </Route>
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+      </IdleTimerContainer>
+    </Router>
+  )
 }
 
-export default App;
+export default App
